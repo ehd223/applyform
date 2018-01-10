@@ -1,0 +1,32 @@
+<!-- 공백 -->
+<div class="row" style="height:70px;"></div>
+<!-- body -->
+<div class="container">
+    <h1>종료된 목록</h1>
+    <!-- 공백 -->
+    <div class="row" style="height:30px;"></div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-info">
+                <th>#</th>
+                <th>제목</th>
+                <th colspan='3'>기간</th>
+                <th>내용</th>
+                <th>삭제</th>
+                <th>수정</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @all_posts.each do |post| %>
+            <tr>
+                <th scope="row"><%= post.id %></th>
+                <td><%= link_to post.title, post %></td>
+                <td colspan ='3'><%= post.start %> 부터 <%= post.end %></td>
+                <td><%= post.content %></td>
+                <td><%= link_to "#", post.delete %></td>
+                <td><%= link_to "#", post %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

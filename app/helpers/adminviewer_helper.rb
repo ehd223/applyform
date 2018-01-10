@@ -1,0 +1,2 @@
+module AdminviewerHelper
+end

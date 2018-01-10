@@ -1,0 +1,66 @@
+<h3><%= @post.title %></h3>
+<h5><%= @post.content %></h5>
+
+<p>마감기한 : ~<%= @post.end %></p>
+
+<div class="col-offset-3 col-md-5">
+<form method="post" action="/uviewer/apply" name="applyform" onsubmit="return validateForm()">
+    <div class="form-group">
+        <label>이름</label>
+        <input type="text" class="form-control" placeholder="ex) 홍길동" name="name">
+    </div>
+    <div class="form-group">
+        <label>학번</label>
+        <input type="text" class="form-control" placeholder="ex) 20xxxxxxxx" name="stid">
+    </div>
+    <% if (@form.attribute_names.include? '이메일') == true %>
+        <div class="form-group">
+            <label>이메일</label>
+            <input type="email" class="form-control" placeholder="name@example.com" name="email">
+        </div>
+    <% end %>
+    <% if (@form.attribute_names.include? '전화번호') == true %>
+        <div class="form-group">
+            <label>전화번호</label>
+            <input type="text" class="form-control" placeholder="010xxxxxxxx" name="pno">
+        </div>
+    <% end %>
+    <% if (@form.attribute_names.include? '학년') == true %>
+        <div class="form-group">
+            <label>학년</label>
+            <select class="form-control" name="grade">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            </select>
+        </div>
+    <% end %>
+    <% @form.attribute_names.select{|n| n != "이름" && n != "학번" && n != "이메일" && n != "전화번호" && n != "학년" && n != "id" && n != "created_at" && n != "updated_at"}.each do |additional| %>
+        <div class="form-group">
+            <label><%= additional %></label>
+            <input type="text" class="form-control" name="<%= additional %>">
+        </div>
+    <% end %>
+    <input type="hidden" value="<%= @post.id %>" name="post_id">
+    <input type="submit" class="btn btn-primary" value="apply">
+    <%= link_to "back", request.referer.present? ? request.referer : default_path %>
+</form>
+
+<a href="/">취소하고 목록으로</a>
+</div>
+
+<script>
+    function validateForm() {
+        var x = document.forms["applyform"]["name"].value;
+        var y = document.forms["applyform"]["stid"].value;
+        if (x == "") {
+            alert("이름은 반드시 입력해야 합니다.");
+            return false;
+        }
+        if (y == "") {
+            alert("학번은 반드시 입력해야 합니다.");
+            return false;
+        }
+    }
+</script>

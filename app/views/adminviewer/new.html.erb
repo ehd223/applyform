@@ -1,0 +1,66 @@
+<!-- 공백 -->
+<div class="row" style="height:70px;"></div>
+<!-- body -->
+<div class="container">
+    <h1>새 접수 항목</h1>
+    <hr>
+    <!-- 공백 -->
+    <div class="row" style="height:30px;"></div>
+
+    <%= form_for @post, url: '/adminviewer/create' do |f| %>
+
+        <div class="container">
+            <p>제목  <%= f.text_field :title %></p>
+            <p>기간  <%= f.date_field :start%> ~ <%= f.date_field :end %></p>
+            <p>설명  <%= f.text_field :content %></p>
+        </div>
+        <br>
+        <p>기본 항목 추가</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="hidden" name="stu[1]" value="이름">이름
+                        </span>
+                        <span class="input-group-addon">
+                            <input type="hidden" name="stu[2]" value="학번">학번
+                        </span>
+                        <span class="input-group-addon">
+                            <input type="checkbox" name="stu[3]" value="학년">학년
+                        </span>
+                        <span class="input-group-addon">
+                            <input type="checkbox" name="stu[4]" value="전화번호">전화번호
+                        </span>
+                        <span class="input-group-addon">
+                            <input type="checkbox" name="stu[5]" value="이메일">이메일
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height:30px;"></div>
+        <script>
+        function add_field()
+        {
+            var total_text=document.getElementsByClassName("input_text");
+            total_text=total_text.length+1;
+            document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
+            "<p id='input_text"+total_text+"_wrapper'><input type='text' name='additional["+total_text+"]' class='input_text' id='input_text"+total_text+"'placeholder='추가항목을 입력하세요'>\t<input type='button' class='btn btn-secondary' value='Remove' onclick=remove_field('input_text"+total_text+"');></p>";
+        }
+        function remove_field(id)
+        {
+            document.getElementById(id+"_wrapper").innerHTML="";
+        }
+        </script>
+
+        <div id="wrapper">
+            <div id="field_div">
+                <input type="button" class="btn btn-secondary" value="Add TextBox" onclick="add_field();">
+            </div>
+        </div>
+
+        <%= f.submit "submit", class:"btn btn-primary float-right" %>
+        <br>
+    <% end %>
+</div>
