@@ -21,8 +21,8 @@
     <% end %>
     <% if (@form.attribute_names.include? '전화번호') == true %>
         <div class="form-group">
-            <label>전화번호</label>
-            <input type="text" class="form-control" placeholder="010xxxxxxxx" name="pno">
+            <label>전화번호 (010-xxxx-xxxx)</label>
+            <input type="text" class="form-control" pattern="^\d{4}-\d{3}-\d{4}$" placeholder="010-xxxx-xxxx" name="pno">
         </div>
     <% end %>
     <% if (@form.attribute_names.include? '학년') == true %>
@@ -54,6 +54,7 @@
     function validateForm() {
         var x = document.forms["applyform"]["name"].value;
         var y = document.forms["applyform"]["stid"].value;
+        // var phoneno = /^\(?([0-9]{3})\)?[-]?([0-9]{4})[-]?([0-9]{4})$/;
         if (x == "") {
             alert("이름은 반드시 입력해야 합니다.");
             return false;
@@ -62,5 +63,14 @@
             alert("학번은 반드시 입력해야 합니다.");
             return false;
         }
+        // if((inputtxt.value.match(phoneno))
+        // {
+        //     return true;
+        // }
+        // else
+        // {
+        //     alert("전화번호는 반드시 xxx-xxxx-xxxx의 형식이어야 합니다. 하이픈을 추가해주세요.");
+        //     return false;
+        // }
     }
 </script>

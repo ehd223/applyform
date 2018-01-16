@@ -1,0 +1,21 @@
+<!-- 공백 -->
+<div class="row" style="height:70px;"></div>
+<!-- body -->
+<div class="container">
+    <h1>기간 재 설정</h1>
+    <hr>
+    <!-- 공백 -->
+    <div class="row" style="height:30px;"></div>
+
+    <%= form_for @post, url: post_path(@post), method: :patch do |f|%>
+
+        <div class="container">
+            <p>제목:  <%= @post.title %></p>
+            <p>기간:  <%= f.date_field :start %> ~ <%= f.date_field :end %></p>
+            <p>설명:  <%= @post.content %></p>
+        </div>
+        <br>
+        <%= f.submit "submit", class:"btn btn-primary float-right" %>
+        <br>
+    <% end %>
+</div>

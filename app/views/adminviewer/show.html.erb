@@ -3,18 +3,24 @@
   <div class="card-body text-secondary">
     <h5 class="card-title"><%= @post.content %></h5>
     <p class="card-text">기간 : <%= @post.start %> ~ <%= @post.end %></p>
-    <h6 class="card-title">추가 입력 사항</h5>
-    <% @form.column_names.each do |col| %>
-        <p class="card-text"><%= col %></p>
-    <% end %>
+    <h6 class="card-title">설명</h5>
+        <p><%= @post.content %></p>
   </div>
 </div>
 
 
 <% if current_user%>
     <div class="row">
-        <h5>신청자 목록</h5>
+        <div class="col-md-6"><h2>신청자 목록</h2></div>
+        <div class="col-md-2">
+            <form action="/adminviewer/export" method="get">
+                <input type="hidden" name="post_id" value='<%= @post.id %>'>
+                <input type="submit" class="btn btn-primary" value="엑셀로 받기">
+            </form>
+        </div>
     </div>
+    <br>
+    <br>
     <div class="col-md-8">
     <table class="table table-hover">
         <thead>
@@ -37,9 +43,8 @@
     </table>
     </div>
 <% else %>
-    <% @tmp = @post.id %>
         <form action="/uviewer/apply_form" method="get">
-            <input type="hidden" name="post_id" value='<%= @tmp %>'>
+            <input type="hidden" name="post_id" value='<%= @post.id %>'>
             <input type="submit" class="btn btn-primary" value="apply">
         </form>
 <% end %>

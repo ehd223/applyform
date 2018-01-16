@@ -55,17 +55,45 @@ class AdminviewerController < ApplicationController
 
     def unstarted_list
         current_date = Time.current.to_date
-        @all_posts = Post.where("start > current_date")
+        posts = Post.where("start > current_date").reverse_order
+        @all_posts = posts.paginate(:page => params[:page])
+        if params[:page] == "1" || params[:page] == nil
+            @idx = posts.count
+        else
+            @idx = posts.count - (30*(params[:page].to_i-1))
+        end
     end
 
     def ongoing_list
         current_date = Time.current.to_date
-        @all_posts = Post.where("current_date BETWEEN start and end")
+        posts = Post.where("current_date BETWEEN start and end").reverse_order
+        @all_posts = posts.paginate(:page => params[:page])
+        if params[:page] == "1" || params[:page] == nil
+            @idx = posts.count
+        else
+            @idx = posts.count - (30*(params[:page].to_i-1))
+        end
     end
 
     def closed_list
         current_date = Time.current.to_date
-        @all_posts = Post.where("end <= current_date")
+        posts = Post.where("end <= current_date").reverse_order
+        @all_posts = posts.paginate(:page => params[:page])
+        if params[:page] == "1" || params[:page] == nil
+            @idx = posts.count
+        else
+            @idx = posts.count - (30*(params[:page].to_i-1))
+        end
+    end
+
+    def edit
+        @post = Post.find(params[:id])
+    end
+
+    def update
+        @post = Post.find(params[:id])
+        @post.update(params_post_edit)
+        redirect_to post_path(@post)
     end
 
     def pw_change
@@ -91,18 +119,39 @@ class AdminviewerController < ApplicationController
         end
     end
 
-    def to_csv(tab)
-        CSV.generate(options) do |csv|
-           csv << column_names
-           all.each do |product|
-             csv << product.attributes.values_at(*column_names)
-           end
-         end
+    def export_csv
+        @post = Post.find(params[:post_id])
+        table_name = @post.title
+        @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
+        package = Axlsx::Package.new
+        workbook = package.workbook
+        @appliers = @form.all
+        workbook.add_worksheet(name: table_name) do |sheet|
+          sheet.add_row @form.column_names
+          @appliers.each do |ap|
+            tmp = ap.attributes.values
+            sheet.add_row tmp
+          end
+        end
+
+        outstrio = StringIO.new
+        package.use_shared_strings = true # Otherwise strings don't display in iWork Numbers
+        outstrio.write(package.to_stream.read)
+        # outstrio.string
+        send_data outstrio.string, :filename=>"#{table_name + '_' + Time.current.to_date.to_s}.xlsx"
+
+        package.serialize("basic.xlsx")
+        # send_file("#{Rails.root}/tmp/basic.xlsx", filename: "#{table_name + '_' + Time.current.to_date.to_s}.xlsx", type: "application/xlsx")
+        # send_file(package.to_stream.read, type: "application/xlsx", filename: "#{table_name + '_' + Time.current.to_date.to_s}.xlsx")
     end
 
     private
         def params_post
           params.require(:post).permit(:title, :start, :end, :content)
+        end
+    private
+        def params_post_edit
+          params.require(:post).permit(:start, :end)
         end
 
 end

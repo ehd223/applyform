@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   get '/adminviewer/unstarted_list', to: 'adminviewer#unstarted_list'
   get '/adminviewer/ongoing_list', to: 'adminviewer#ongoing_list'
   get '/adminviewer/closed_list', to: 'adminviewer#closed_list'
+  get '/adminviewer/export', to: 'adminviewer#export_csv'
   get '/adminviewer/:id/', to: 'adminviewer#show', as: 'post'
+  patch '/adminviewer/:id', to: 'adminviewer#update'
+  get '/adminviewer/:id/edit', to: 'adminviewer#edit', as: :edit
   delete '/adminviewer/:id/',to: 'adminviewer#destroy'
 
   #관리자 로그인

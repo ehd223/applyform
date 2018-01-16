@@ -2,7 +2,13 @@ class UviewerController < ApplicationController
     skip_before_action :verify_authenticity_token
   def index
       current_date = Time.current.to_date
-      @all_posts = Post.where("current_date BETWEEN start and end")
+      posts = Post.where("current_date BETWEEN start and end").reverse_order
+      @all_posts = posts.paginate(:page => params[:page])
+      if params[:page] == "1" || params[:page] == nil
+          @idx = posts.count
+      else
+          @idx = posts.count - (30*(params[:page].to_i-1))
+      end
   end
 
   def show
@@ -46,7 +52,7 @@ class UviewerController < ApplicationController
           parexc = params.select{|n| n != "name" && n != "stid" && n != "email" && n != "pno" && n != "grade" && n != "post_id"}
 
 
-          temp.attribute_names.select{|n| n != "이름" && n != "학번" && n != "학년" && n != "이메일" && n != "전화번호" && n != "id" && n != "created_at" && n != "updated_at"}.zip(parexc).each do |att, val|
+          temp.attribute_names.select{|n| n != "이름" && n != "학번" && n != "학년" && n != "이메일" && n != "전화번호" && n != "id" && n != "created_at" && n != "updated_at"}.zip(parexc.values).each do |att, val|
                temp[att] = val
            end
 
@@ -89,7 +95,7 @@ class UviewerController < ApplicationController
       parexc = params.select{|n| n != "name" && n != "stid" && n != "email" && n != "pno" && n != "grade" && n != "post_id"}
 
 
-      temp.attribute_names.select{|n| n != "이름" && n != "학번" && n != "학년" && n != "이메일" && n != "전화번호" && n != "id" && n != "created_at" && n != "updated_at"}.zip(parexc).each do |att, val|
+      temp.attribute_names.select{|n| n != "이름" && n != "학번" && n != "학년" && n != "이메일" && n != "전화번호" && n != "id" && n != "created_at" && n != "updated_at"}.zip(parexc.values).each do |att, val|
            temp[att] = val
        end
 
