@@ -22,7 +22,7 @@
     <% if (@form.attribute_names.include? '전화번호') == true %>
         <div class="form-group">
             <label>전화번호 (010-xxxx-xxxx)</label>
-            <input type="text" class="form-control" pattern="^\d{4}-\d{3}-\d{4}$" placeholder="010-xxxx-xxxx" name="pno">
+            <input type="text" class="form-control" pattern="^\d{3}-\d{4}-\d{4}$" placeholder="010-xxxx-xxxx" name="pno">
         </div>
     <% end %>
     <% if (@form.attribute_names.include? '학년') == true %>
