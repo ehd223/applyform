@@ -23,7 +23,7 @@
                 <td><%= link_to post.title, post %></td>
                 <td colspan ='3'><%= post.start %> 부터 <%= post.end %></td>
                 <td><%= post.content %></td>
-                <td><%= link_to 'Destroy',  post,  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to '삭제',  post,  method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <td><%= link_to "기간수정", edit_path(post) %></td>
                 <% @idx = @idx - 1 %>
             </tr>

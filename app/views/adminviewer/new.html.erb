@@ -46,7 +46,7 @@
             var total_text=document.getElementsByClassName("input_text");
             total_text=total_text.length+1;
             document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-            "<p id='input_text"+total_text+"_wrapper'><input type='text' name='additional["+total_text+"]' class='input_text' id='input_text"+total_text+"'placeholder='추가항목을 입력하세요'>\t<input type='button' class='btn btn-secondary' value='Remove' onclick=remove_field('input_text"+total_text+"');></p>";
+            "<p id='input_text"+total_text+"_wrapper'><input type='text' name='additional["+total_text+"]' class='input_text' id='input_text"+total_text+"'placeholder='추가항목을 입력하세요'>\t<input type='button' class='btn btn-secondary' value='제거' onclick=remove_field('input_text"+total_text+"');></p>";
         }
         function remove_field(id)
         {
@@ -56,11 +56,11 @@
 
         <div id="wrapper">
             <div id="field_div">
-                <input type="button" class="btn btn-secondary" value="Add TextBox" onclick="add_field();">
+                <input type="button" class="btn btn-secondary" value="항목추가" onclick="add_field();">
             </div>
         </div>
 
-        <%= f.submit "submit", class:"btn btn-primary float-right" %>
+        <%= f.submit "제출", class:"btn btn-primary float-right" %>
         <br>
     <% end %>
 </div>

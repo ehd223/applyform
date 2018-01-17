@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Applyform</title>
+    <title>소프트웨어학과 서울어코드 사업단 신청 페이지</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -23,11 +23,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
-    <div class="row">
-        <img src="/accord_image.jpeg" alt="" width="40%" height="40%" style="margin-left: 80px">
-        <div class="col-md-1"></div><div style="padding-top:50px"><h2>신청 페이지</h2></div>
-    </div>
-
+        <img src="/accord_image.jpeg" alt="" width="40%" height="40%" style="margin-left: 400px;" >
+    <!-- </div> -->
+<!-- <div style="padding-top:50px"><h2>신청 페이지</h2> -->
     <% if current_user%>
         <%= link_to '로그아웃', '/logout', class: 'float-right' %>
         <%= render "layouts/header" %>

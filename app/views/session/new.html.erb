@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1>관리자 로그인</h1>
 
    <% flash.each do |key, value| %>
      <div class="alert alert-<%= key %>"><%= value %></div>
@@ -6,8 +6,8 @@
 
 <%= form_tag '/login' do %>
 
-  Name: <%= text_field_tag :name %>
+  ID: <%= text_field_tag :name %>
   Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag "로그인" %>
 
 <% end %>
