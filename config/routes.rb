@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   #관리자 페이지
-  get '/apply/adminviewer', to: 'adminviewer#adminview'
+  get 'adminviewer', to: 'adminviewer#adminview'
   get '/apply/adminviewer/new', to: 'adminviewer#new'
   post '/apply/adminviewer/create', to: 'adminviewer#create'
   get '/apply/adminviewer/unstarted_list', to: 'adminviewer#unstarted_list'
@@ -23,11 +23,11 @@ Rails.application.routes.draw do
 
   #관리자 로그인
 
-  get '/apply/login' => 'session#new'
-  post '/apply/login' => 'session#create'
-  get '/apply/logout' => 'session#destroy'
-  patch '/apply/pwc', to: 'adminviewer#pwc'
-  get '/apply/pw_change', to: 'adminviewer#pw_change'
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  get '/logout' => 'session#destroy'
+  patch '/pwc', to: 'adminviewer#pwc'
+  get '/pw_change', to: 'adminviewer#pw_change'
 
   # resources :poll
 
