@@ -58,7 +58,7 @@ class UviewerController < ApplicationController
 
            if temp.save
                flash[:success] = ('신청 완료.')
-               redirect_to '/'
+               redirect_to '/apply'
            end
        end
   end
@@ -101,7 +101,7 @@ class UviewerController < ApplicationController
 
        if temp.save
            flash[:success] = ('수정 완료.')
-           redirect_to '/'
+           redirect_to '/apply'
        end
   end
 end
