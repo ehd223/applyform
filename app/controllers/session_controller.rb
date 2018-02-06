@@ -21,6 +21,6 @@ class SessionController < ApplicationController
 
     def destroy
         session[:admin_id] = nil
-        redirect_to '/'
+        redirect_to '/apply'
     end
 end
