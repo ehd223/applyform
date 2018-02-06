@@ -4,7 +4,7 @@
 <p>마감기한 : ~<%= @post.end %></p>
 
 <div class="col-offset-3 col-md-5">
-<form method="post" action="/uviewer/apply" name="applyform" onsubmit="return validateForm()">
+<form method="post" action="/apply/uviewer/apply" name="applyform" onsubmit="return validateForm()">
     <div class="form-group">
         <label>이름</label>
         <input type="text" class="form-control" placeholder="ex) 홍길동" name="name">
@@ -44,10 +44,10 @@
     <% end %>
     <input type="hidden" value="<%= @post.id %>" name="post_id">
     <input type="submit" class="btn btn-primary" value="신청">
-    <%= link_to "뒤로가기", '/' %>
+    <%= link_to "뒤로가기",apply' %>
 </form>
 
-<a href="/">취소하고 목록으로</a>
+<a href="/apply">취소하고 목록으로</a>
 </div>
 
 <script>
