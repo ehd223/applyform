@@ -10,7 +10,7 @@ class SessionController < ApplicationController
             # logged in when they navigate around our website.
             session[:admin_id] = admin.id
             flash[:success]="Login Successful"
-            redirect_to '/apply/adminviewer'
+            redirect_to 'adminviewer'
         else
         # If user's login doesn't work, send them back to the login form.
 
@@ -21,6 +21,6 @@ class SessionController < ApplicationController
 
     def destroy
         session[:admin_id] = nil
-        redirect_to '/apply'
+        redirect_to '/'
     end
 end
