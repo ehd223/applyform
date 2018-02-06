@@ -3,7 +3,7 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<%= form_for(@admin, :url => "/apply/pwc") do |f| %>
+<%= form_for(@admin, :url => "/pwc") do |f| %>
 
   <%= hidden_field(:admin, :name, :value => @admin.name) %>
 

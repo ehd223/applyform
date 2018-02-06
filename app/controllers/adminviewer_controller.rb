@@ -30,7 +30,7 @@ class AdminviewerController < ApplicationController
         end
         # create_arec(@post.title.to_sym)
 
-        redirect_to "/apply/adminviewer"
+        redirect_to "/adminviewer"
     end
 
     def show
@@ -50,7 +50,7 @@ class AdminviewerController < ApplicationController
 
         @post.destroy!
 
-        redirect_to('/apply/adminviewer')
+        redirect_to('/adminviewer')
     end
 
     def unstarted_list
@@ -108,10 +108,10 @@ class AdminviewerController < ApplicationController
             @admin.password_digest = BCrypt::Password.create(params[:admin][:new_password])
             @admin.save
             flash[:success] = "pw 변경 성공"
-            redirect_to '/apply/adminviewer'
+            redirect_to '/adminviewer'
         else
             flash[:warning] = "새 비밀번호를 다시 확인해 주십시오."
-            redirect_to '/apply/pw_change'
+            redirect_to '/pw_change'
         # else
         #     flash[:warning] = "현재 비밀번호가 일치하지 않습니다."
         #     # kwlknfwekfnewkf
