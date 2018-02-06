@@ -28,4 +28,14 @@ ActiveRecord::Schema.define(version: 20180108124506) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "test", force: :cascade do |t|
+    t.string "이름"
+    t.string "학번"
+    t.string "학년"
+    t.string "전화번호"
+    t.string "testtt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
