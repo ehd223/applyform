@@ -30,7 +30,7 @@ class AdminviewerController < ApplicationController
         end
         # create_arec(@post.title.to_sym)
 
-        redirect_to "/adminviewer"
+        redirect_to "/apply/adminviewer"
     end
 
     def show
@@ -50,7 +50,7 @@ class AdminviewerController < ApplicationController
 
         @post.destroy!
 
-        redirect_to('/adminviewer')
+        redirect_to('/apply/adminviewer')
     end
 
     def unstarted_list
