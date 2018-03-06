@@ -15,7 +15,7 @@ class AdminviewerController < ApplicationController
         @post.save
 
 
-        ActiveRecord::Migration.create_table @post.id.to_sym do |t|
+        ActiveRecord::Migration.create_table (@post.id.to_s).to_sym do |t|
             if params[:stu] != nil
                 params[:stu].values.each do |par|
                     t.string par
