@@ -45,12 +45,36 @@
         {
             var total_text=document.getElementsByClassName("input_text");
             total_text=total_text.length+1;
-            document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-            "<p id='input_text"+total_text+"_wrapper'><input type='text' name='additional["+total_text+"]' class='input_text' id='input_text"+total_text+"'placeholder='추가항목을 입력하세요'>\t<input type='button' class='btn btn-secondary' value='제거' onclick=remove_field('input_text"+total_text+"');></p>";
+
+            var wrapper = document.createElement("p");
+            wrapper.id = "input_text" + total_text + "_wrapper";
+
+            var additional_input = document.createElement("input");
+            additional_input.id = "input_text" + total_text;
+            additional_input.className = 'input_text';
+            additional_name = "additional[" + total_text + "]";
+            additional_input.setAttribute('name', additional_name);
+            additional_input.setAttribute('type', 'text');
+
+            var additional_delbutton = document.createElement("input");
+            additional_delbutton.className = 'btn btn-secondary';
+            additional_delname = "input_text" + total_text;
+            additional_delbutton.setAttribute('value', '제거');
+            additional_delbutton.setAttribute('style', 'margin-left:50px; width:70px');
+            additional_delbutton.setAttribute('onclick', "remove_field(\"" + additional_delname + "\")");
+
+            var tap = document.createTextNode("\t");
+
+            wrapper.appendChild(additional_input);
+            wrapper.appendChild(tap);
+            wrapper.appendChild(additional_delbutton);
+
+            document.getElementById("field_div").appendChild(wrapper);
         }
         function remove_field(id)
         {
-            document.getElementById(id+"_wrapper").innerHTML="";
+            var wp = document.getElementById(id+"_wrapper");
+            wp.parentNode.removeChild(wp);
         }
         </script>
 
