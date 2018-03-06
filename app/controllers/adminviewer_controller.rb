@@ -1,6 +1,6 @@
 # require'bcrypt'
 class AdminviewerController < ApplicationController
-    before_action :authorize, :except => [:show, :create, :adminview]
+    before_action :authorize, :except => [:show, :create, :adminview, :pwc, :pw_change]
     def adminview
 
     end
@@ -108,7 +108,7 @@ class AdminviewerController < ApplicationController
             # @admin.password_cofirmation = params[:admin][:new_password]
             # @admin.password = @admin.password_cofirmation
             @admin.password_digest = BCrypt::Password.create(params[:admin][:new_password])
-            @admin.save
+            @admin.save!
             flash[:success] = "pw 변경 성공"
             redirect_to '/apply/adminviewer'
         else
