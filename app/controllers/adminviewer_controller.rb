@@ -1,6 +1,6 @@
 # require'bcrypt'
 class AdminviewerController < ApplicationController
-    before_action :authorize, :except => :show, :create
+    before_action :authorize, :except => [:show, :create]
     def adminview
 
     end
