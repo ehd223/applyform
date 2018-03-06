@@ -30,7 +30,7 @@ class AdminviewerController < ApplicationController
         end
 
         flash[:success] = "새 접수항목 생성 완료"
-        render 'adminview'
+        redirect_to 'adminview'
     end
 
     def show
