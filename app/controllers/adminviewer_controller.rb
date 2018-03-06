@@ -35,7 +35,7 @@ class AdminviewerController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        table_name = @post.title
+        table_name = @post.id.to_s
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
 
         # sql = "select * from #{table_name}"
@@ -123,7 +123,7 @@ class AdminviewerController < ApplicationController
 
     def export_csv
         @post = Post.find(params[:post_id])
-        table_name = @post.title
+        table_name = @post.id.to_s
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
         package = Axlsx::Package.new
         workbook = package.workbook
