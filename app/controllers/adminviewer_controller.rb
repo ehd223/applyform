@@ -123,7 +123,7 @@ class AdminviewerController < ApplicationController
 
     def export_csv
         @post = Post.find(params[:post_id])
-        table_name = @post.id.to_s
+        table_name = @post.title
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
         package = Axlsx::Package.new
         workbook = package.workbook
