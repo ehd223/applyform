@@ -6,6 +6,6 @@ class Admin < ApplicationRecord
             return admin
         else
             return nil
+        end
     end
-end
 end

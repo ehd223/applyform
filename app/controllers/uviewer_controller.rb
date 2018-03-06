@@ -13,7 +13,7 @@ class UviewerController < ApplicationController
 
   def show
       @post = Post.find(params[:id])
-      table_name = @post.title
+      table_name = @post.id
       @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
 
       # sql = "select * from #{table_name}"
@@ -22,13 +22,13 @@ class UviewerController < ApplicationController
 
   def apply_form
       @post = Post.find(params[:post_id])
-      tab_name = @post.title
+      tab_name = @post.id
       @form = Class.new(ActiveRecord::Base){self.table_name = tab_name}
   end
 
   def apply
       @post = Post.find(params[:post_id])
-      tab_name = @post.title
+      tab_name = @post.id
       @form = Class.new(ActiveRecord::Base){self.table_name = tab_name}
 
       if @form.all.find_by(학번: params[:stid]) != nil
@@ -65,7 +65,7 @@ class UviewerController < ApplicationController
 
   def edit_form
       @post = Post.find(params[:post_id])
-      tab_name = @post.title
+      tab_name = @post.id
       @form = Class.new(ActiveRecord::Base){self.table_name = tab_name}
 
       @student = @form.all.find_by(학번: params[:stid])
@@ -73,7 +73,7 @@ class UviewerController < ApplicationController
 
   def edit
       @post = Post.find(params[:post_id])
-      tab_name = @post.title
+      tab_name = @post.id
       @form = Class.new(ActiveRecord::Base){self.table_name = tab_name}
 
 

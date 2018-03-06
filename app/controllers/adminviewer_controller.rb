@@ -15,7 +15,7 @@ class AdminviewerController < ApplicationController
         @post.save
 
 
-        ActiveRecord::Migration.create_table @post.title.to_sym do |t|
+        ActiveRecord::Migration.create_table @post.id.to_sym do |t|
             if params[:stu] != nil
                 params[:stu].values.each do |par|
                     t.string par
@@ -28,14 +28,14 @@ class AdminviewerController < ApplicationController
             end
             t.timestamps
         end
-        # create_arec(@post.title.to_sym)
 
-        redirect_to "/apply/adminviewer"
+        flash[:success] = "새 접수항목 생성 완료"
+        render '/apply/adminviewer'
     end
 
     def show
         @post = Post.find(params[:id])
-        table_name = @post.title
+        table_name = @post.id
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
 
         # sql = "select * from #{table_name}"
@@ -44,12 +44,13 @@ class AdminviewerController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
-        tab_name = @post.title
+        tab_name = @post.id
         sql = "drop table #{tab_name}"
         @form = ActiveRecord::Base.connection.execute(sql)
 
         @post.destroy!
 
+        flash[:success] = "삭제 완료"
         redirect_to('/apply/adminviewer')
     end
 

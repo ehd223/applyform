@@ -12,6 +12,36 @@
 
 ActiveRecord::Schema.define(version: 20180108124506) do
 
+  create_table "Test", force: :cascade do |t|
+    t.string "학번"
+    t.string "전화번호"
+    t.string "이메일"
+    t.string "기타"
+    t.string "등등"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "Test2", force: :cascade do |t|
+    t.string "이름"
+    t.string "학번"
+    t.string "학년"
+    t.string "전화번호"
+    t.string "이메일"
+    t.string "12"
+    t.string "23"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "Test3", force: :cascade do |t|
+    t.string "이름"
+    t.string "학번"
+    t.string "학년"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -28,12 +58,34 @@ ActiveRecord::Schema.define(version: 20180108124506) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "test", force: :cascade do |t|
+  create_table "unst", force: :cascade do |t|
+    t.string "이름"
+    t.string "학번"
+    t.string "학년"
+    t.string "5"
+    t.string "6"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "마지막", force: :cascade do |t|
     t.string "이름"
     t.string "학번"
     t.string "학년"
     t.string "전화번호"
-    t.string "testtt"
+    t.string "기타"
+    t.string "등등"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "새로", force: :cascade do |t|
+    t.string "이름"
+    t.string "학번"
+    t.string "학년"
+    t.string "전화번호"
+    t.string "이메일"
+    t.string "추가"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
