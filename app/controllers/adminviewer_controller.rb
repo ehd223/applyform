@@ -45,7 +45,7 @@ class AdminviewerController < ApplicationController
     def destroy
         @post = Post.find(params[:id])
         tab_name = @post.id.to_s
-        sql = "drop table #{tab_name}"
+        sql = "drop table \'#{tab_name}\'"
         @form = ActiveRecord::Base.connection.execute(sql)
 
         @post.destroy!
