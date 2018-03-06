@@ -99,11 +99,11 @@ class AdminviewerController < ApplicationController
     end
 
     def pw_change
-        @admin = Admin.find(session[:admin_id])
+        @admin = Admin.first
     end
 
     def pwc
-        @admin = Admin.find(session[:admin_id]).try(:authenticate, params[:admin][:current_password])
+        @admin = Admin.first.try(:authenticate, params[:admin][:current_password])
         if (params[:admin][:new_password] == params[:admin][:new_password_confirmation])
             # @admin.password_cofirmation = params[:admin][:new_password]
             # @admin.password = @admin.password_cofirmation
