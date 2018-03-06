@@ -35,7 +35,7 @@ class AdminviewerController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        table_name = @post.id.to_s
+        table_name = @post.title
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
 
         # sql = "select * from #{table_name}"
@@ -74,6 +74,7 @@ class AdminviewerController < ApplicationController
         else
             @idx = posts.count - (30*(params[:page].to_i-1))
         end
+
     end
 
     def closed_list
