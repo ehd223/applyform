@@ -30,12 +30,12 @@ class AdminviewerController < ApplicationController
         end
 
         flash[:success] = "새 접수항목 생성 완료"
-        render '/apply/adminviewer'
+        render '/adminviewer'
     end
 
     def show
         @post = Post.find(params[:id])
-        table_name = @post.id
+        table_name = @post.id.to_s
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
 
         # sql = "select * from #{table_name}"
@@ -44,7 +44,7 @@ class AdminviewerController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
-        tab_name = @post.id
+        tab_name = @post.id.to_s
         sql = "drop table #{tab_name}"
         @form = ActiveRecord::Base.connection.execute(sql)
 
@@ -122,7 +122,7 @@ class AdminviewerController < ApplicationController
 
     def export_csv
         @post = Post.find(params[:post_id])
-        table_name = @post.title
+        table_name = @post.id.to_s
         @form = Class.new(ActiveRecord::Base){self.table_name = table_name}
         package = Axlsx::Package.new
         workbook = package.workbook
