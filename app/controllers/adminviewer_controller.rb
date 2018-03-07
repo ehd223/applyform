@@ -136,11 +136,13 @@ class AdminviewerController < ApplicationController
           end
         end
 
+        fname = @post.title
+
         outstrio = StringIO.new
         package.use_shared_strings = true # Otherwise strings don't display in iWork Numbers
         outstrio.write(package.to_stream.read)
         # outstrio.string
-        send_data outstrio.string, :filename=>"#{table_name + '_' + Time.current.to_date.to_s}.xlsx"
+        send_data outstrio.string, :filename=>"#{fname + '_' + Time.current.to_date.to_s}.xlsx"
 
         package.serialize("basic.xlsx")
         # send_file("#{Rails.root}/tmp/basic.xlsx", filename: "#{table_name + '_' + Time.current.to_date.to_s}.xlsx", type: "application/xlsx")
