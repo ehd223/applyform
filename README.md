@@ -1,24 +1,7 @@
-# README
+# 충북대학교 소프트웨어학과 서울어코드 사업단 신청 접수 페이지
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+***
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. 충북대학교 소프트웨어학과 서울어코드 사업단에서 진행하는 프로그램의 신청 및 접수를 위한 페이지입니다.
+2. 신청자(학생) 과 관리자를 위한 페이지로 구분되어 있습니다.
+3. 기술 스택 : ruby on rails, apache2, bootstrap4, BCrypt
